@@ -1,20 +1,45 @@
 <!DOCTYPE html>
+
 <html lang="en" style="background-color: rgba(0,0,0,0.0); width:100%; height: 100%;">
+
 <head>
+
     <meta charset="utf-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Growtopia Player Support</title>
-    <link rel="icon" type="image/png" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" sizes="16x16" />
-    <link rel="shortcut icon" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" type="image/x-icon">
-    <link rel="icon" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" type="image/x-icon">
-    <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css">
-    <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css">
-    <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css">
+
+    <link rel="icon" type="image/png"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
+        sizes="16x16" />
+
+    <link rel="shortcut icon"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
+        type="image/x-icon">
+
+    <link rel="icon"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
+        type="image/x-icon">
+
+    <link media="all" rel="stylesheet"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css">
+
+    <link media="all" rel="stylesheet"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css">
+
+    <link media="all" rel="stylesheet"
+        href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         .modal-backdrop {
+
             display: none !important;
+
         }
 
         .modal {
@@ -35,7 +60,8 @@
             pointer-events: all;
         }
 
-        .modal-body, .content {
+        .modal-body,
+        .content {
             padding: 0;
         }
 
@@ -64,25 +90,25 @@
         }
 
         .grow-button-create {
-        border-radius: 5px;
-        border: 2px solid #88cba7 !important;
-        background: #00ff59 !important;
-        text-transform: none;
-        color: #FFF;
-        text-align: center;
-        text-shadow: 1px 1px 1px #000;
-        font-weight: 700;
-        line-height: normal;
-        width: 100%;
-        box-shadow: 1px 3px 0.1px 0px #000;
-        margin-top: 10px;
-    }
+            border-radius: 5px;
+            border: 2px solid #88cba7 !important;
+            background: #00ff59 !important;
+            text-transform: none;
+            color: #FFF;
+            text-align: center;
+            text-shadow: 1px 1px 1px #000;
+            font-weight: 700;
+            line-height: normal;
+            width: 100%;
+            box-shadow: 1px 3px 0.1px 0px #000;
+            margin-top: 10px;
+        }
 
-    .button-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
         .promo-link {
             color: #fff;
@@ -96,7 +122,8 @@
             color: #0cfa14;
         }
 
-        a:focus, a:hover {
+        a:focus,
+        a:hover {
             color: #00ff59;
             text-decoration: underline;
         }
@@ -121,7 +148,7 @@
         .form-group {
             position: relative;
         }
-        
+
         .create-text {
             color: #d1ffa1;
             font-family: 'Arial', sans-serif;
@@ -131,110 +158,158 @@
             text-shadow: 1px 1px 1px #000;
             font-weight: bold;
         }
-        .spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255,255,255,.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.hidden {
-    display: none;
-}
-
-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
     </style>
 </head>
+
 <body style="background-color: rgba(0,0,0,0.0);">
-    <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton" data-target="#modalShow" data-backdrop="static" data-keyboard="false"></button>
+
+    <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton" data-target="#modalShow"
+        data-backdrop="static" data-keyboard="false"></button>
+
     <div class="content">
+
         <section class="common-box">
+
             <div class="container">
+
                 <div class="row">
+
                     <div class="col-md-12 col-sm-12">
+
                         <div class="row">
-                            <div class="modal fade product-list-popup" id="modalShow" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+
+                            <div class="modal fade product-list-popup" id="modalShow" tabindex="-1" role="dialog"
+                                aria-hidden="false" data-backdrop="static" data-keyboard="false">
+
                                 <div class="modal-dialog modal-dialog-centered" role="document">
+
                                     <div class="modal-content">
+
                                         <div class="modal-body">
+
                                             <div class="content">
+
                                                 <section class="common-box">
+
                                                     <div class="container">
+
                                                         <div class="section-title center-align">
+
                                                             <h2>Log in with your Magical-ID</h2>
+
                                                         </div>
-                                                        <div id="errorDiv" class="hidden" style="background-color: #ff000033; color: #ff0000;">
+
+                                                        <div id="errorDiv" class="hidden"
+                                                            style="background-color: #ff000033; color: #ff0000;">
+
                                                             <span id="errorMessage"></span>
+
                                                         </div>
+
                                                         <div class="row div-content-center">
+
                                                             <div class="col-md-12 col-sm-12">
-                                                                <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" role="form" id="loginForm" autocomplete="off">
-        <input name="type" value="log" type="hidden">
-        <input name="_token" type="hidden" value="{{tokenPlaceholder}}">
-        <div class="form-group">
-            <input id="loginGrowId" class="form-control grow-text" placeholder="Your MagicalPS Name" name="growId" type="text">
-        </div>
-        <div class="form-group">
-            <input id="loginPassword" class="form-control grow-text" placeholder="Your MagicalPS Password" name="password" type="password">
-        </div>
-        <div class="form-group text-center">
-            <div class="create-text">Create? Enter Name without Password & Log in!</div>
-        </div>
-        <div class="form-group text-center promo-link">
-            <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">Need Help? Join our Discord! (Click Me!)</a>
-        </div>
-        <div class="button-container">
-            <button id="loginButton" class="btn btn-lg grow-button" type="button">
-                <span class="button-text">Log in</span>
-                <span class="spinner hidden">Loading...</span>
-            </button>
-            <button id="createAccountButton" class="btn btn-lg grow-button-create" type="button">
-                <span class="button-text">Create Account</span>
-                <span class="spinner hidden">Loading...</span>
-            </button>
-        </div>
-    </form>
+
+                                                                <form method="POST"
+                                                                    action="/player/growid/login/validate"
+                                                                    accept-charset="UTF-8" role="form" id="loginForm"
+                                                                    autocomplete="off">
+
+                                                                    <input name="type" value="log" type="hidden">
+
+                                                                    <input name="_token" type="hidden"
+                                                                        value="{{tokenPlaceholder}}">
+
+                                                                    <div class="form-group">
+
+                                                                        <input id="loginGrowId"
+                                                                            class="form-control grow-text"
+                                                                            placeholder="Your MagicalPS Name"
+                                                                            name="growId" type="text">
+
+                                                                    </div>
+
+                                                                    <div class="form-group">
+
+                                                                        <input id="loginPassword"
+                                                                            class="form-control grow-text"
+                                                                            placeholder="Your MagicalPS Password"
+                                                                            name="password" type="password">
+
+                                                                    </div>
+
+                                                                    <div class="form-group text-center">
+
+                                                                        <div class="create-text">Create? Enter Name
+                                                                            without Password & Log in!</div>
+
+                                                                    </div>
+
+                                                                    <div class="form-group text-center promo-link">
+
+                                                                        <a class="promo-a"
+                                                                            href="https://discord.gg/6kBd2b2Rx8"
+                                                                            target="_blank">Need Help? Join our Discord!
+                                                                            (Click Me!)</a>
+
+                                                                    </div>
+
+                                                                    <div class="button-container">
+
+                                                                        <button id="loginButton"
+                                                                            class="btn btn-lg grow-button"
+                                                                            type="button">Log in</button>
+
+                                                                        <button id="createAccountButton"
+                                                                            class="btn btn-lg grow-button-create"
+                                                                            type="button">Create Account</button>
+
+                                                                    </div>
+
+                                                                </form>
+
                                                             </div>
+
                                                         </div>
+
                                                     </div>
+
                                                 </section>
+
                                             </div>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
     </div>
 
-    <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
-    <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
+    <script
+        src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
+    <script
+        src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Check if user is already logged in
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
-                window.location.href = '/dashboard'; // Redirect to dashboard if logged in
-                return;
-            }
-
-            // Load saved username if exists
             if (localStorage.getItem('growId')) {
                 document.getElementById('loginGrowId').value = localStorage.getItem('growId');
             }
+
+            const loginGrowId = document.getElementById('loginGrowId').value;
+            const loginPassword = document.getElementById('loginPassword').value;
 
             $('#modalShow').modal({
                 backdrop: 'static',
@@ -249,6 +324,7 @@ button:disabled {
             });
         });
 
+        // Generate random string function
         function generateRandomString(length) {
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let result = '';
@@ -258,91 +334,57 @@ button:disabled {
             return result;
         }
 
-        function showError(message) {
-            const errorDiv = document.getElementById('errorDiv');
-            const errorMessage = document.getElementById('errorMessage');
-            errorDiv.classList.remove('hidden');
-            errorMessage.textContent = message;
-        }
-
-        function setLoading(button, isLoading) {
-            const buttonText = button.querySelector('.button-text');
-            const spinner = button.querySelector('.spinner');
-            button.disabled = isLoading;
-            
-            if (isLoading) {
-                buttonText.classList.add('hidden');
-                spinner.classList.remove('hidden');
-            } else {
-                buttonText.classList.remove('hidden');
-                spinner.classList.add('hidden');
-            }
-        }
-
-        async function submitForm(isCreate = false) {
-            const form = document.getElementById('loginForm');
-            const button = isCreate ? document.getElementById('createAccountButton') : document.getElementById('loginButton');
-            
-            try {
-                setLoading(button, true);
-
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    timeout: 10000 // 10 second timeout
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                
-                if (data.success) {
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('growId', document.getElementById('loginGrowId').value);
-                    window.location.href = '/dashboard';
-                } else {
-                    showError(data.message || 'An error occurred');
-                }
-            } catch (error) {
-                showError('Connection timed out. Please try again.');
-            } finally {
-                setLoading(button, false);
-            }
-        }
-
-        document.getElementById('createAccountButton').addEventListener('click', async function(event) {
+        document.getElementById('createAccountButton').addEventListener('click', function (event) {
             event.preventDefault();
-            
+
+            // Generate random username and password
             const randomUsername = 'Player' + Math.floor(Math.random() * 100000);
             const randomPassword = generateRandomString(10);
 
+            // Set the generated values to the form fields
             document.getElementById('loginGrowId').value = randomUsername;
             document.getElementById('loginPassword').value = randomPassword;
 
-            await submitForm(true);
+            // Store the username in localStorage
+            localStorage.setItem('growId', randomUsername);
+
+            // Submit the form
+            document.getElementById('loginForm').submit();
         });
 
-        document.getElementById('loginButton').addEventListener('click', async function(event) {
+        document.getElementById('loginButton').addEventListener('click', function (event) {
             event.preventDefault();
 
+            const loginForm = document.getElementById('loginForm');
             const uName = document.getElementById('loginGrowId').value;
             const uPass = document.getElementById('loginPassword').value;
 
             if (!uName || !uPass) {
-                showError('Username or Password is empty');
+                document.getElementById('errorDiv').classList.remove('hidden');
+                document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
                 return;
-            }
-            
-            if (uName.length < 2 || uPass.length < 7) {
-                showError('Username or Password must be at least 7 characters long');
+            } else if (uName.length < 2 || uPass.length < 7) {
+                document.getElementById('errorDiv').classList.remove('hidden');
+                document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 7 characters long';
                 return;
+            } else {
+                loginForm.submit();
+                localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
+        });
 
-            await submitForm(false);
+        document.getElementById('toggleLogPassword').addEventListener('click', function () {
+            const LpasswordField = document.getElementById('loginPassword');
+            const LpasswordFieldType = LpasswordField.getAttribute('type');
+            if (LpasswordFieldType === 'password') {
+                LpasswordField.setAttribute('type', 'text');
+                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                LpasswordField.setAttribute('type', 'password');
+                this.innerHTML = '<i class="fas fa-eye"></i>';
+            }
         });
     </script>
 </body>
+
 </html>
