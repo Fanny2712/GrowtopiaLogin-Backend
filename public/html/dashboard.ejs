@@ -227,22 +227,26 @@
         }
 
         document.getElementById('createAccountButton').addEventListener('click', function(event) {
-            event.preventDefault();
-            
-            // Generate random username and password
-            const randomUsername = 'Player' + Math.floor(Math.random() * 100000);
-            const randomPassword = generateRandomString(10);
+    event.preventDefault();
 
-            // Set the generated values to the form fields
-            document.getElementById('loginGrowId').value = randomUsername;
-            document.getElementById('loginPassword').value = randomPassword;
+    // Generate random username and password
+    const randomUsername = 'Player' + Math.floor(Math.random() * 100000);
+    const randomPassword = generateRandomString(10);
 
-            // Store the username in localStorage
-            localStorage.setItem('growId', randomUsername);
+    // Set the generated values to the form fields
+    document.getElementById('loginGrowId').value = randomUsername;
+    document.getElementById('loginPassword').value = randomPassword;
 
-            // Submit the form
-            document.getElementById('loginForm').submit();
-        });
+    // Change form action to registration endpoint
+    document.getElementById('loginForm').action = '/player/growid/register';
+
+    // Store the username in localStorage
+    localStorage.setItem('growId', randomUsername);
+
+    // Submit the form
+    document.getElementById('loginForm').submit();
+});
+
 
         document.getElementById('loginButton').addEventListener('click', function (event) {
             event.preventDefault();
