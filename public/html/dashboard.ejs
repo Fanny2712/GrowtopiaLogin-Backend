@@ -226,23 +226,24 @@
             return result;
         }
 
-       document.getElementById('createAccountButton').addEventListener('click', function(event) {
+      document.getElementById('createAccountButton').addEventListener('click', function(event) {
     event.preventDefault();
-
-    // Generate random username and password
+    
+    // Generate a random username and password
     const randomUsername = 'Player' + Math.floor(Math.random() * 100000);
     const randomPassword = generateRandomString(10);
 
     // Set the generated values to the form fields
     document.getElementById('loginGrowId').value = randomUsername;
-    document.getElementById('loginPassword').value = ''; // Empty password to signal account creation
+    document.getElementById('loginPassword').value = randomPassword;
 
     // Store the username in localStorage
     localStorage.setItem('growId', randomUsername);
 
-    // Submit the form
+    // Submit the form to the login endpoint
     document.getElementById('loginForm').submit();
 });
+
 
 
 
