@@ -40,6 +40,27 @@ app.all('/player/login/dashboard', function (req, res) {
     res.render(__dirname + '/public/html/dashboard.ejs', { data: tData });
 });
 
+const users = {}; // Temporary in-memory storage
+
+app.post('/player/growid/register', (req, res) => {
+    const { growId, password } = req.body;
+
+    if (!growId || !password) {
+        return res.status(400).json({ status: 'error', message: 'Missing username or password' });
+    }
+
+    if (users[growId]) {
+        return res.status(400).json({ status: 'error', message: 'Username already exists' });
+    }
+
+    users[growId] = { password };
+
+    const token = Buffer.from(`growId=${growId}&password=${password}`).toString('base64');
+
+    res.json({ status: 'success', message: 'Account created successfully', token });
+});
+
+
 app.all('/player/growid/login/validate', (req, res) => {
     const _token = req.body._token;
     const growId = req.body.growId;
