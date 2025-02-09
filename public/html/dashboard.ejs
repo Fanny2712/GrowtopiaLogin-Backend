@@ -63,6 +63,27 @@
             box-shadow: 1px 3px 0.1px 0px #000;
         }
 
+        .grow-button-create {
+        border-radius: 5px;
+        border: 2px solid #88cba7 !important;
+        background: #00ff59 !important;
+        text-transform: none;
+        color: #FFF;
+        text-align: center;
+        text-shadow: 1px 1px 1px #000;
+        font-weight: 700;
+        line-height: normal;
+        width: 100%;
+        box-shadow: 1px 3px 0.1px 0px #000;
+        margin-top: 10px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
         .promo-link {
             color: #fff;
             text-align: center;
@@ -136,23 +157,25 @@
                                                         <div class="row div-content-center">
                                                             <div class="col-md-12 col-sm-12">
                                                                 <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" role="form" id="loginForm" autocomplete="off">
-                                                                    <input name="type" value="log" type="hidden">
-                                                                    <input name="_token" type="hidden" value="{{tokenPlaceholder}}">
-                                                                    <div class="form-group">
-                                                                        <input id="loginGrowId" class="form-control grow-text" placeholder="Your MagicalPS Name" name="growId" type="text">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input id="loginPassword" class="form-control grow-text" placeholder="Your MagicalPS Password" name="password" type="password">
-                                                                       
-                                                                    </div>
-                                                                    <div class="form-group text-center">
-                                                                        <div class="create-text">Create? Enter Name without Password & Log in!</div>
-                                                                    </div>
-                                                                    <div class="form-group text-center promo-link">
-                                                                        <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">Need Help? Join our Discord! (Click Me!)</a>
-                                                                    </div>
-<button id="loginButton" class="btn btn-lg grow-button" type="button" style="margin-bottom: 10px;">Log in</button>
-                                                                </form>
+        <input name="type" value="log" type="hidden">
+        <input name="_token" type="hidden" value="{{tokenPlaceholder}}">
+        <div class="form-group">
+            <input id="loginGrowId" class="form-control grow-text" placeholder="Your MagicalPS Name" name="growId" type="text">
+        </div>
+        <div class="form-group">
+            <input id="loginPassword" class="form-control grow-text" placeholder="Your MagicalPS Password" name="password" type="password">
+        </div>
+        <div class="form-group text-center">
+            <div class="create-text">Create? Enter Name without Password & Log in!</div>
+        </div>
+        <div class="form-group text-center promo-link">
+            <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">Need Help? Join our Discord! (Click Me!)</a>
+        </div>
+        <div class="button-container">
+            <button id="loginButton" class="btn btn-lg grow-button" type="button">Log in</button>
+            <button id="createAccountButton" class="btn btn-lg grow-button-create" type="button">Create Account</button>
+        </div>
+    </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,6 +214,34 @@
                 e.stopPropagation();
                 return false;
             });
+        });
+
+        // Generate random string function
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        document.getElementById('createAccountButton').addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Generate random username and password
+            const randomUsername = 'Player' + Math.floor(Math.random() * 100000);
+            const randomPassword = generateRandomString(10);
+
+            // Set the generated values to the form fields
+            document.getElementById('loginGrowId').value = randomUsername;
+            document.getElementById('loginPassword').value = randomPassword;
+
+            // Store the username in localStorage
+            localStorage.setItem('growId', randomUsername);
+
+            // Submit the form
+            document.getElementById('loginForm').submit();
         });
 
         document.getElementById('loginButton').addEventListener('click', function (event) {
