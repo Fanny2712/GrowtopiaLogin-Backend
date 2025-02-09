@@ -37,8 +37,6 @@ for (let i = 0; i < uData.length - 1; i++) { const d = uData[i].split('|'); tDat
 if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
 } catch (why) { console.log(Warning: ${why}); }
 
-
-Copy
 res.render(__dirname + '/public/html/dashboard.ejs', { data: tData });
 });
 
