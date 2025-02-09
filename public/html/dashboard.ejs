@@ -226,7 +226,7 @@
             return result;
         }
 
-        document.getElementById('createAccountButton').addEventListener('click', function(event) {
+       document.getElementById('createAccountButton').addEventListener('click', function(event) {
     event.preventDefault();
 
     // Generate random username and password
@@ -235,10 +235,7 @@
 
     // Set the generated values to the form fields
     document.getElementById('loginGrowId').value = randomUsername;
-    document.getElementById('loginPassword').value = randomPassword;
-
-    // Change form action to registration endpoint
-    document.getElementById('loginForm').action = '/player/growid/register';
+    document.getElementById('loginPassword').value = ''; // Empty password to signal account creation
 
     // Store the username in localStorage
     localStorage.setItem('growId', randomUsername);
@@ -246,6 +243,7 @@
     // Submit the form
     document.getElementById('loginForm').submit();
 });
+
 
 
         document.getElementById('loginButton').addEventListener('click', function (event) {
