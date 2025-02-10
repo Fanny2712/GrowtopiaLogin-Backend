@@ -178,65 +178,42 @@
     <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
     <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (localStorage.getItem('growId')) {
-                document.getElementById('loginGrowId').value = localStorage.getItem('growId');
-            }
-
-            $('#modalShow').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
+                    document.getElementById('loginButton').addEventListener('click', function (event) {
+                event.preventDefault();
+    
+                const loginForm = document.getElementById('loginForm');
+                const uName = document.getElementById('loginGrowId').value;
+                const uPass = document.getElementById('loginPassword').value;
+    
+                if (!uName || !uPass) {
+                    document.getElementById('errorDiv').classList.remove('hidden');
+                    document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
+                    return;
+                } else if (uName.length < 4 || uPass.length < 4) {
+                    document.getElementById('errorDiv').classList.remove('hidden');
+                    document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
+                    return;
+                } else {
+                    loginForm.submit();
+                    localStorage.setItem('growId', document.getElementById('loginGrowId').value);
+                }
+            })
+            document.getElementById('toggleLogPassword').addEventListener('click', function () {
+                const LpasswordField = document.getElementById('loginPassword')
+                const LpasswordFieldType = LpasswordField.getAttribute('type');
+                if (LpasswordFieldType === 'password') {
+                    LpasswordField.setAttribute('type', 'text');
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                } else {
+                    LpasswordField.setAttribute('type', 'password');
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }
             });
-
-            $('#modalShow').on('hide.bs.modal', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            });
-        });
-
-        document.getElementById('loginButton').addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const loginForm = document.getElementById('loginForm');
-            const uName = document.getElementById('loginGrowId').value;
-            const uPass = document.getElementById('loginPassword').value;
-
-            if (!uName || !uPass) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
-                return;
-            } else if (uName.length < 3 || uPass.length < 7) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username must be at least 3 characters long';
-                return;
-            }  else if (uPass.length < 7) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Password must be at least 7 characters long';
-                return;
-            } 
-                else {
-                loginForm.submit();
-                localStorage.setItem('growId', document.getElementById('loginGrowId').value);
-            }
-        })
-        document.getElementById('toggleLogPassword').addEventListener('click', function () {
-            const LpasswordField = document.getElementById('loginPassword');
-            const LpasswordFieldType = LpasswordField.getAttribute('type');
-            if (LpasswordFieldType === 'password') {
-                LpasswordField.setAttribute('type', 'text');
-                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                LpasswordField.setAttribute('type', 'password');
-                this.innerHTML = '<i class="fas fa-eye"></i>';
-            }
-        });
-document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+            // handle Register text click
+            document.getElementById('doYouNeedAccount').addEventListener('click', function () {
                 const registerForm = document.getElementById('registerForm');
                 registerForm.submit();
             });
-
     </script>
 </body>
 </html>
