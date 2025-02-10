@@ -10,8 +10,8 @@
         @font-face {
             font-family: 'CustomFont';
             src: url('https://fonts.cdnfonts.com/s/93901/HerokingRegular-51Jm8.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+font-weight: normal;
+font-style: normal;
         }
 
         * {
@@ -19,7 +19,7 @@
         }
 
         body {
-            background-color: transparent; /* Fixed typo: 'transparant' to 'transparent' */
+            background-color: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -103,7 +103,7 @@
         <p class="title">Growtopia Login Support</p>
 
         <div id="errorDiv" class="error hidden">
-            <span id="errorMessage">USERNAME OR PASSWORD IS EMPTY</span>
+            USERNAME OR PASSWORD IS EMPTY
         </div>
 
         <form method="post" action="/player/growid/login/validate" id="loginForm">
@@ -126,48 +126,44 @@
                 </div>
             </div>
             <div class="flex justify-between items-center mt-4">
-                <button type="button" id="doYouNeedAccount" class="login-btn">REGISTER</button>
-                <button type="submit" id="loginButton" class="login-btn">LOGIN</button>
-            </div>
+    <button id="doYouNeedAccount" class="login-btn">REGISTER</button>
+    <button id="loginButton" class="login-btn">LOGIN</button>
+</div>
         </form>
     </div>
 
     <script>
-        document.getElementById('loginButton').addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const loginForm = document.getElementById('loginForm');
-            const uName = document.getElementById('loginGrowId').value;
-            const uPass = document.getElementById('loginPassword').value;
-
-            // Clear previous error messages
-            document.getElementById('errorDiv').classList.add('hidden');
-
-            if (!uName || !uPass) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
-                return;
-            } else if (uName.length < 3 || uPass.length < 4) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
-                return;
-            } else {
-                loginForm.submit();
-                localStorage.setItem('growId', uName);
-            }
-        });
-
-        document.getElementById('toggleLogPassword').addEventListener('click', function () {
-            const LpasswordField = document.getElementById('loginPassword');
-            const LpasswordFieldType = LpasswordField.getAttribute('type');
-            if (LpasswordFieldType === 'password') {
-                LpasswordField.setAttribute('type', 'text');
-                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                LpasswordField.setAttribute('type', 'password');
-                this.innerHTML = '<i class="fas fa-eye"></i>';
-            }
-        });
+                    document.getElementById('loginButton').addEventListener('click', function (event) {
+                event.preventDefault();
+    
+                const loginForm = document.getElementById('loginForm');
+                const uName = document.getElementById('loginGrowId').value;
+                const uPass = document.getElementById('loginPassword').value;
+    
+                if (!uName || !uPass) {
+                    document.getElementById('errorDiv').classList.remove('hidden');
+                    document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
+                    return;
+                } else if (uName.length < 4 || uPass.length < 4) {
+                    document.getElementById('errorDiv').classList.remove('hidden');
+                    document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
+                    return;
+                } else {
+                    loginForm.submit();
+                    localStorage.setItem('growId', document.getElementById('loginGrowId').value);
+                }
+            })
+            document.getElementById('toggleLogPassword').addEventListener('click', function () {
+                const LpasswordField = document.getElementById('loginPassword')
+                const LpasswordFieldType = LpasswordField.getAttribute('type');
+                if (LpasswordFieldType === 'password') {
+                    LpasswordField.setAttribute('type', 'text');
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                } else {
+                    LpasswordField.setAttribute('type', 'password');
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }
+            });
             // handle Register text click
             document.getElementById('doYouNeedAccount').addEventListener('click', function () {
                 const registerForm = document.getElementById('registerForm');
