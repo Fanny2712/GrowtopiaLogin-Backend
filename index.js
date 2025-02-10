@@ -66,7 +66,7 @@ app.all('/player/growid/login/validate', (req, res) => {
 // New route added here
 app.post('/player/growid/checktoken', (req, res) => {
     res.send(
-        `{"status":"success","message":"Account Validated.","token":"${req.body.refreshToken}","url":"","accountType":"growtopia"}`,
+        `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia"}`,
     );
 });
 
