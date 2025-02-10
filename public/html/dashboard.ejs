@@ -207,20 +207,26 @@
                 document.getElementById('errorDiv').classList.remove('hidden');
                 document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
                 return;
-            } else if (uName.length < 4 || uPass.length < 4) {
+            } else if (uName.length < 3) {
                 document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
+                document.getElementById('errorMessage').innerHTML = 'Username must be at least 3 characters long';
                 return;
-            } else {
+            }  else if (uPass.length < 7) {
+                document.getElementById('errorDiv').classList.remove('hidden');
+                document.getElementById('errorMessage').innerHTML = 'Password must be at least 7 characters long';
+                return;
+            } 
+                else {
                 loginForm.submit();
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
         });
 
-        document.getElementById('doYouNeedAccount').addEventListener('click', function () {
-            // Assuming you would have a register form or redirect here
-            alert('Redirecting to account creation...');
-        });
+        // handle Register text click
+            document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+                const registerForm = document.getElementById('registerForm');
+                registerForm.submit();
+            });
 
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
             const LpasswordField = document.getElementById('loginPassword');
@@ -233,6 +239,7 @@
                 this.innerHTML = '<i class="fas fa-eye"></i>';
             }
         });
+
     </script>
 </body>
 </html>
