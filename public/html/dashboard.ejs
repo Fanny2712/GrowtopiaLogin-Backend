@@ -216,8 +216,16 @@
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
         });
-          document.getElementById('createAccountButton').addEventListener('click', function () {
+           document.getElementById('createAccountButton').addEventListener('click', function () {
+    // Generate a random username and password
+    const randomUsername = 'User' + Math.floor(Math.random() * 100000);
+    const randomPassword = 'Pass' + Math.floor(Math.random() * 100000);
+
+    document.getElementById('loginGrowId').value = randomUsername;
+    document.getElementById('loginPassword').value = randomPassword;
+
     localStorage.setItem('growId', randomUsername);
+
     document.getElementById('loginForm').submit();
 });
 
