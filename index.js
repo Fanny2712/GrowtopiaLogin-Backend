@@ -54,9 +54,11 @@ app.all('/player/growid/login/validate', (req, res) => {
     );
 });
 
-app.post('/player/growid/checktoken', (req, res) => {    res.send(
-        `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia"}`,    );
-});
+app.post('/player/growid/checktoken', (req,res)=>{
+    res.send(
+        `{"status":"success","message":"Account Validated.","token":"${req.body.refreshToken}","url":"","accountType":"growtopia"}`,
+    );
+})
 
 app.all('/player/*', function (req, res) {
     res.status(301).redirect('https://api.yoruakio.tech/player/' + req.path.slice(8));
