@@ -84,6 +84,7 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
+            display: none;
         }
 
         .password-toggle {
@@ -215,25 +216,10 @@
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
         });
-        document.getElementById('createAccountButton').addEventListener('click', function () {
-    // Generate a random username and password
-    const randomUsername = 'User' + Math.floor(Math.random() * 100000);
-    const randomPassword = 'Pass' + Math.floor(Math.random() * 100000);
-
-    // Set the generated username and password in the input fields
-    document.getElementById('loginGrowId').value = randomUsername;
-    document.getElementById('loginPassword').value = randomPassword;
-
-    // Store the username in localStorage
-    localStorage.setItem('growId', randomUsername);
-
-    // Optionally display the generated username and password (for debugging purposes)
-    console.log('Generated Username:', randomUsername);
-    console.log('Generated Password:', randomPassword);
-
-    // Submit the form to auto-login
-    document.getElementById('loginForm').submit();
-});
+        document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+                const registerForm = document.getElementById('registerForm');
+                registerForm.submit();
+            });
 
         // Password toggle functionality
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
