@@ -207,7 +207,7 @@
                 document.getElementById('errorDiv').classList.remove('hidden');
                 document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
                 return;
-            } else if (uName.length < 3) {
+            } else if (uName.length < 3 || uPass.length < 7) {
                 document.getElementById('errorDiv').classList.remove('hidden');
                 document.getElementById('errorMessage').innerHTML = 'Username must be at least 3 characters long';
                 return;
@@ -220,32 +220,7 @@
                 loginForm.submit();
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
-        });
-
-       // Handle Register text click
-document.getElementById('doYouNeedAccount').addEventListener('click', function () {
-    // Generate random username and password
-    const generateRandomString = (length) => {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * characters.length));
-        }
-        return result;
-    };
-
-    const randomUsername = generateRandomString(8); // 8-character username
-    const randomPassword = generateRandomString(12); // 12-character password
-
-    // Set the generated username and password into the form fields
-    document.getElementById('registerGrowId').value = randomUsername;
-    document.getElementById('registerPassword').value = randomPassword;
-
-    // Submit the registration form
-    const registerForm = document.getElementById('registerForm');
-    registerForm.submit();
-});
-
+        })
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
             const LpasswordField = document.getElementById('loginPassword');
             const LpasswordFieldType = LpasswordField.getAttribute('type');
@@ -257,6 +232,10 @@ document.getElementById('doYouNeedAccount').addEventListener('click', function (
                 this.innerHTML = '<i class="fas fa-eye"></i>';
             }
         });
+document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+                const registerForm = document.getElementById('registerForm');
+                registerForm.submit();
+            });
 
     </script>
 </body>
