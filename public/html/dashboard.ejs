@@ -84,6 +84,7 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
+            display: none; /* Hide by default */
         }
 
         .password-toggle {
@@ -130,7 +131,7 @@
                                                         <div class="section-title center-align">
                                                             <h2>Log in with your Magical-ID</h2>
                                                         </div>
-                                                        <div id="errorDiv" class="hidden" style="background-color: #ff000033; color: #ff0000;">
+                                                        <div id="errorDiv" style="background-color: #ff000033; color: #ff0000;">
                                                             <span id="errorMessage"></span>
                                                         </div>
                                                         <div class="row div-content-center">
@@ -143,7 +144,6 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input id="loginPassword" class="form-control grow-text" placeholder="Your MagicalPS Password" name="password" type="password">
-                                                                       
                                                                     </div>
                                                                     <div class="form-group text-center">
                                                                         <div class="create-text">Create? Enter Name without Password & Log in!</div>
@@ -151,7 +151,7 @@
                                                                     <div class="form-group text-center promo-link">
                                                                         <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">Need Help? Join our Discord! (Click Me!)</a>
                                                                     </div>
-<button id="loginButton" class="btn btn-lg grow-button" type="button" style="margin-bottom: 10px;">Log in</button>
+                                                                    <button id="loginButton" class="btn btn-lg grow-button" type="button" style="margin-bottom: 10px;">Log in</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -177,9 +177,6 @@
                 document.getElementById('loginGrowId').value = localStorage.getItem('growId');
             }
 
-            const loginGrowId = document.getElementById('loginGrowId').value;
-            const loginPassword = document.getElementById('loginPassword').value;
-
             $('#modalShow').modal({
                 backdrop: 'static',
                 keyboard: false,
@@ -200,12 +197,16 @@
             const uName = document.getElementById('loginGrowId').value;
             const uPass = document.getElementById('loginPassword').value;
 
+            // Reset error message
+            document.getElementById('errorDiv').style.display = 'none';
+            document.getElementById('errorMessage').innerHTML = '';
+
             if (!uName || !uPass) {
-                document.getElementById('errorDiv').classList.remove('hidden');
+                document.getElementById('errorDiv').style.display = 'block';
                 document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
                 return;
             } else if (uName.length < 4 || uPass.length < 4) {
-                document.getElementById('errorDiv').classList.remove('hidden');
+                document.getElementById('errorDiv').style.display = 'block';
                 document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
                 return;
             } else {
@@ -214,6 +215,7 @@
             }
         });
 
+        // Password toggle functionality
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
             const LpasswordField = document.getElementById('loginPassword');
             const LpasswordFieldType = LpasswordField.getAttribute('type');
