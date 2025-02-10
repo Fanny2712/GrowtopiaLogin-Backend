@@ -216,11 +216,10 @@
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
         });
-         document.getElementById('loginButton').addEventListener('click', function (event) {
-            event.preventDefault();
-                const loginForm = document.getElementById('loginForm');
-                loginForm.submit();
-            });
+          document.getElementById('createAccountButton').addEventListener('click', function () {
+    localStorage.setItem('growId', randomUsername);
+    document.getElementById('loginForm').submit();
+});
 
         // Password toggle functionality
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
