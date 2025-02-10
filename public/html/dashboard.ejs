@@ -178,42 +178,100 @@
     <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
     <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
     <script>
-                    document.getElementById('loginButton').addEventListener('click', function (event) {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if growId is stored in localStorage and populate the input field
+        const growId = localStorage.getItem('growId');
+        if (growId) {
+            const growIdInput = document.getElementById('loginGrowId');
+            if (growIdInput) {
+                growIdInput.value = growId;
+            }
+        }
+
+        // Show modal with static backdrop and prevent it from being closed
+        const modal = document.getElementById('modalShow');
+        if (modal) {
+            $('#modalShow').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+
+            // Prevent modal from being dismissed
+            $('#modalShow').on('hide.bs.modal', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+        }
+
+        // Handle login button click
+        const loginButton = document.getElementById('loginButton');
+        if (loginButton) {
+            loginButton.addEventListener('click', function (event) {
                 event.preventDefault();
-    
+
                 const loginForm = document.getElementById('loginForm');
-                const uName = document.getElementById('loginGrowId').value;
-                const uPass = document.getElementById('loginPassword').value;
-    
+                const uName = document.getElementById('loginGrowId')?.value.trim();
+                const uPass = document.getElementById('loginPassword')?.value.trim();
+
                 if (!uName || !uPass) {
-                    document.getElementById('errorDiv').classList.remove('hidden');
-                    document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
+                    showError('Username or Password is empty');
                     return;
-                } else if (uName.length < 4 || uPass.length < 4) {
-                    document.getElementById('errorDiv').classList.remove('hidden');
-                    document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
+                }
+
+                if (uName.length < 4 || uPass.length < 4) {
+                    showError('Username or Password must be at least 4 characters long');
                     return;
-                } else {
+                }
+
+                // Submit the form and save growId to localStorage
+                if (loginForm) {
                     loginForm.submit();
-                    localStorage.setItem('growId', document.getElementById('loginGrowId').value);
-                }
-            })
-            document.getElementById('toggleLogPassword').addEventListener('click', function () {
-                const LpasswordField = document.getElementById('loginPassword')
-                const LpasswordFieldType = LpasswordField.getAttribute('type');
-                if (LpasswordFieldType === 'password') {
-                    LpasswordField.setAttribute('type', 'text');
-                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-                } else {
-                    LpasswordField.setAttribute('type', 'password');
-                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                    localStorage.setItem('growId', uName);
                 }
             });
-            // handle Register text click
-            document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+        }
+
+        // Toggle password visibility
+        const togglePasswordButton = document.getElementById('toggleLogPassword');
+        if (togglePasswordButton) {
+            togglePasswordButton.addEventListener('click', function () {
+                const passwordField = document.getElementById('loginPassword');
+                if (passwordField) {
+                    const passwordFieldType = passwordField.getAttribute('type');
+                    if (passwordFieldType === 'password') {
+                        passwordField.setAttribute('type', 'text');
+                        this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                    } else {
+                        passwordField.setAttribute('type', 'password');
+                        this.innerHTML = '<i class="fas fa-eye"></i>';
+                    }
+                }
+            });
+        }
+
+        // Handle "Do you need an account?" click
+        const registerLink = document.getElementById('doYouNeedAccount');
+        if (registerLink) {
+            registerLink.addEventListener('click', function () {
                 const registerForm = document.getElementById('registerForm');
-                registerForm.submit();
+                if (registerForm) {
+                    registerForm.submit();
+                }
             });
-    </script>
+        }
+
+        // Helper function to show error messages
+        function showError(message) {
+            const errorDiv = document.getElementById('errorDiv');
+            const errorMessage = document.getElementById('errorMessage');
+            if (errorDiv && errorMessage) {
+                errorDiv.classList.remove('hidden');
+                errorMessage.textContent = message; // Use textContent to avoid XSS
+            }
+        }
+    });
+</script>
 </body>
 </html>
