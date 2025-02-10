@@ -56,6 +56,9 @@ app.all('/player/growid/login/validate', (req, res) => {
 })
 });
 
+app.all('/player/*', function (req, res) {
+});
+
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
