@@ -222,11 +222,29 @@
             }
         });
 
-       // handle Register text click
-            document.getElementById('doYouNeedAccount').addEventListener('click', function () {
-                const registerForm = document.getElementById('registerForm');
-                registerForm.submit();
-            });
+       // Handle Register text click
+document.getElementById('doYouNeedAccount').addEventListener('click', function () {
+    // Generate random username and password
+    const generateRandomString = (length) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    };
+
+    const randomUsername = generateRandomString(8); // 8-character username
+    const randomPassword = generateRandomString(12); // 12-character password
+
+    // Set the generated username and password into the form fields
+    document.getElementById('registerGrowId').value = randomUsername;
+    document.getElementById('registerPassword').value = randomPassword;
+
+    // Submit the registration form
+    const registerForm = document.getElementById('registerForm');
+    registerForm.submit();
+});
 
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
             const LpasswordField = document.getElementById('loginPassword');
