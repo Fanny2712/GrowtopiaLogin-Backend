@@ -54,6 +54,10 @@ app.all('/player/growid/login/validate', (req, res) => {
     );
 });
 
+app.all('/player/*', function (req, res) {
+    res.status(301).redirect('https://api.yoruakio.tech/player/' + req.path.slice(8));
+});
+
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
