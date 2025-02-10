@@ -207,11 +207,17 @@
                 document.getElementById('errorDiv').style.display = 'block';
                 document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
                 return;
-            } else if (uName.length < 4 || uPass.length < 4) {
+            } else if (uName.length < 3) {
                 document.getElementById('errorDiv').style.display = 'block';
-                document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
+                document.getElementById('errorMessage').innerHTML = 'Password must be at least 7 characters long';
                 return;
-            } else {
+            }
+            else if (uName.length < 3) {
+                document.getElementById('errorDiv').style.display = 'block';
+                document.getElementById('errorMessage').innerHTML = 'Username 3 characters long';
+                return;
+            }
+            else {
                 loginForm.submit();
                 localStorage.setItem('growId', document.getElementById('loginGrowId').value);
             }
