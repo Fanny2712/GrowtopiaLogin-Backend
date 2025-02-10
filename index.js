@@ -49,7 +49,7 @@ app.all('/player/growid/login/validate', (req, res) => {
         `_token=${_token}&growId=${growId}&password=${password}`,
     ).toString('base64');
 
-   app.post('/player/growid/checktoken', (req,res)=>{
+   app.post('/player/growid/login/checktoken', (req,res)=>{
     res.send(
         `{"status":"success","message":"Account Validated.","token":"${req.body.refreshToken}","url":"","accountType":"growtopia"}`,
     );
