@@ -43,7 +43,7 @@
             border: 6px solid #000000;
             background-color: rgba(0, 0, 0, 0.0);
             color: #FFF;
-            background-image: url('https://raw.githubusercontent.com/Fanny2712/GrowtopiaLogin-Backend/main/public/html/images/main_menu_bg_themed.png');
+            background-image: url('./images/main_menu_bg_themed.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -61,6 +61,30 @@
             line-height: normal;
             width: 100%;
             box-shadow: 1px 3px 0.1px 0px #000;
+            margin-bottom: 10px;
+        }
+
+        .grow-button:hover {
+            background: #ffea4d !important;
+        }
+
+        .create-button {
+            border-radius: 5px;
+            border: 2px solid #88cba3 !important;
+            background: #0cfa14 !important;
+            text-transform: none;
+            color: #FFF;
+            text-align: center;
+            text-shadow: 1px 1px 1px #000;
+            font-weight: 700;
+            line-height: normal;
+            width: 100%;
+            box-shadow: 1px 3px 0.1px 0px #000;
+            margin-bottom: 10px;
+        }
+
+        .create-button:hover {
+            background: #00ff59 !important;
         }
 
         .promo-link {
@@ -84,7 +108,7 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
-            display: none;
+            display: none; /* Hide by default */
         }
 
         .password-toggle {
@@ -102,14 +126,56 @@
             position: relative;
         }
         
-        .create-text {
-            color: #d1ffa1;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
+        .form-control {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            border: 2px solid rgba(255, 230, 0, 0.5) !important;
+            color: white !important;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(255, 230, 0, 0.8);
+            border-color: #ffe600 !important;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-title h2 {
+            color: #ffe600;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        .divider {
             text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 1px #000;
-            font-weight: bold;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .divider-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 10px;
+            color: #fff;
+        }
+
+        .divider-text:before, .divider-text:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .divider-text:before {
+            right: 100%;
+        }
+
+        .divider-text:after {
+            left: 100%;
         }
     </style>
 </head>
@@ -144,13 +210,27 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input id="loginPassword" class="form-control grow-text" placeholder="Your MagicalPS Password" name="password" type="password">
+                                                                        <button type="button" id="toggleLogPassword" class="password-toggle">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </button>
                                                                     </div>
+                                                                    <button id="loginButton" class="btn btn-lg grow-button" type="button">
+                                                                        <i class="fas fa-sign-in-alt"></i> Log in
+                                                                    </button>
+                                                                    
+                                                                    <div class="divider">
+                                                                        <span class="divider-text">OR</span>
+                                                                    </div>
+                                                                    
+                                                                    <button id="createAccountButton" class="btn btn-lg create-button" type="button">
+                                                                        <i class="fas fa-user-plus"></i> Create Account
+                                                                    </button>
+                                                                    
                                                                     <div class="form-group text-center promo-link">
-                                                                        <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">Need Help? Join our Discord! (Click Me!)</a>
+                                                                        <a class="promo-a" href="https://discord.gg/6kBd2b2Rx8" target="_blank">
+                                                                            <i class="fab fa-discord"></i> Need Help? Join our Discord!
+                                                                        </a>
                                                                     </div>
-                                                                    <button id="loginButton" class="btn btn-lg grow-button" type="button" style="margin-bottom: 10px;">Log in</button>
-<br>
-<button id="createAccountButton" class="btn btn-lg grow-button" type="button" style="margin-bottom: 10px;">Create Account</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -189,6 +269,27 @@
             });
         });
 
+        // Generate random username and password
+        function generateRandomCredentials() {
+            const prefixes = ["Magic", "Wizard", "Mystic", "Epic", "Super", "Ultra", "Mega", "Cosmic", "Dragon", "Phoenix"];
+            const suffixes = ["Player", "Gamer", "Master", "Hero", "Warrior", "Knight", "Legend", "Champion", "Star", "Elite"];
+            
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const randomSuffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+            const randomNum = Math.floor(Math.random() * 10000);
+            
+            const username = randomPrefix + randomSuffix + randomNum;
+            
+            // Generate random password (letters and numbers)
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let password = "";
+            for (let i = 0; i < 8; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            return { username, password };
+        }
+
         document.getElementById('loginButton').addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -202,45 +303,59 @@
 
             if (!uName || !uPass) {
                 document.getElementById('errorDiv').style.display = 'block';
-                document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
+                document.getElementById('errorMessage').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Username or Password is empty';
                 return;
-            } else if (uName.length < 3) {
+            } else if (uName.length < 4 || uPass.length < 4) {
                 document.getElementById('errorDiv').style.display = 'block';
-                document.getElementById('errorMessage').innerHTML = 'Password must be at least 7 characters long';
+                document.getElementById('errorMessage').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Username or Password must be at least 4 characters long';
                 return;
-            }
-            else if (uName.length < 3) {
-                document.getElementById('errorDiv').style.display = 'block';
-                document.getElementById('errorMessage').innerHTML = 'Username 3 characters long';
-                return;
-            }
-            else {
-                loginForm.submit();
-                localStorage.setItem('growId', document.getElementById('loginGrowId').value);
+            } else {
+                document.getElementById('loginButton').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+                setTimeout(function() {
+                    loginForm.submit();
+                    localStorage.setItem('growId', document.getElementById('loginGrowId').value);
+                }, 500);
             }
         });
-           document.getElementById('createAccountButton').addEventListener('click', function () {
-    // Generate a random username and password
-    const randomUsername = 'User' + Math.floor(Math.random() * 100000);
-    const randomPassword = 'Pass' + Math.floor(Math.random() * 100000);
 
-    document.getElementById('loginGrowId').value = randomUsername;
-    document.getElementById('loginPassword').value = randomPassword;
-
-    localStorage.setItem('growId', randomUsername);
-
-    document.getElementById('loginForm').submit();
-});
+        // Create account button functionality
+        document.getElementById('createAccountButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            // Generate random credentials
+            const credentials = generateRandomCredentials();
+            
+            // Display the generated credentials in the input fields
+            document.getElementById('loginGrowId').value = credentials.username;
+            document.getElementById('loginPassword').value = credentials.password;
+            
+            // Show a success message
+            document.getElementById('errorDiv').style.backgroundColor = '#0cfa1433';
+            document.getElementById('errorDiv').style.color = '#0cfa14';
+            document.getElementById('errorDiv').style.display = 'block';
+            document.getElementById('errorMessage').innerHTML = '<i class="fas fa-check-circle"></i> Account created! Logging in...';
+            
+            // Change button text to show loading
+            document.getElementById('createAccountButton').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+            
+            // Save the generated username to local storage
+            localStorage.setItem('growId', credentials.username);
+            
+            // Submit the form after a short delay
+            setTimeout(function() {
+                document.getElementById('loginForm').submit();
+            }, 1500);
+        });
 
         // Password toggle functionality
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
-            const LpasswordField = document.getElementById('loginPassword');
-            const LpasswordFieldType = LpasswordField.getAttribute('type');
-            if (LpasswordFieldType === 'password') {
-                LpasswordField.setAttribute('type', 'text');
+            const passwordField = document.getElementById('loginPassword');
+            const passwordFieldType = passwordField.getAttribute('type');
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
                 this.innerHTML = '<i class="fas fa-eye-slash"></i>';
             } else {
-                LpasswordField.setAttribute('type', 'password');
+                passwordField.setAttribute('type', 'password');
                 this.innerHTML = '<i class="fas fa-eye"></i>';
             }
         });
